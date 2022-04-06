@@ -6,7 +6,7 @@ const productsLoaded = (data) => ({
 });
 
 export const fetchProducts = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await getProducts();
 
