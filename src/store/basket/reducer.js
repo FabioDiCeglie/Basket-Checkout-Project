@@ -11,7 +11,12 @@ export default (state = initialState, action) => {
       const id = product.sku;
       const basketLimit = product.basketLimit;
 
-      const newItems = state.items;
+      // const { sku: id, basketLimit } = product;
+
+      const newItems = {
+        ...state.items,
+      };
+
 
       if (!newItems[id]) {
         newItems[id] = {
@@ -61,6 +66,9 @@ export default (state = initialState, action) => {
     }
     case "basket/updateTotals": {
       const basketItems = Object.values(state.items);
+      console.log(basketItems)
+
+
 
       let total = 0;
       let numberOfItems = 0;
@@ -76,6 +84,7 @@ export default (state = initialState, action) => {
 
           numberOfItems += qty;
           total += price * qty;
+
         }
       });
 
