@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 const initialState = {
   total: 0,
   numberOfItems: 0,
@@ -16,7 +17,6 @@ export default (state = initialState, action) => {
       const newItems = {
         ...state.items,
       };
-
 
       if (!newItems[id]) {
         newItems[id] = {
@@ -66,9 +66,6 @@ export default (state = initialState, action) => {
     }
     case "basket/updateTotals": {
       const basketItems = Object.values(state.items);
-      console.log(basketItems)
-
-
 
       let total = 0;
       let numberOfItems = 0;
@@ -84,7 +81,6 @@ export default (state = initialState, action) => {
 
           numberOfItems += qty;
           total += price * qty;
-
         }
       });
 
@@ -92,6 +88,23 @@ export default (state = initialState, action) => {
         ...state,
         total: total.toFixed(2),
         numberOfItems,
+      };
+    }
+    case "basket/removeAll": {
+      const { product } = action.payload;
+      const id = product.sku;
+
+      const newItems = { ...state.items };
+
+      if (!newItems[id]) {
+        return state;
+      }
+
+      delete newItems[id];
+
+      return {
+        ...state,
+        items: newItems,
       };
     }
     default: {

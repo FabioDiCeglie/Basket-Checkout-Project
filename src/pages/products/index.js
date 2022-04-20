@@ -1,11 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {useEffect, Fragment} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import { Link } from "react-router-dom"
 import {addToBasket, removeFromBasket} from "../../store/basket/actions";
 import {fetchProducts} from "../../store/products/actions";
 import {selectProducts} from "../../store/products/selectors";
 import {selectTotal, selectNumberOfItems} from "../../store/basket/selectors";
-import {Container, Grid, AppBar, Button, Stack, Toolbar, IconButton, Badge, Box,Link} from "@mui/material";
+import {Container, Grid, AppBar, Button, Stack, Toolbar, IconButton, Badge, Box} from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export default () => {
@@ -81,7 +82,7 @@ export default () => {
       </Container>
       <Container>
         <Stack direction="row" justifyContent="end" alignItems="center" spacing={3}>
-          <Link href="/products/checkout" underline="none">
+          <Link to="/products/checkout"  style={{ textDecoration: 'none' }} >
           <Button
             variant="contained"
             disableElevation
